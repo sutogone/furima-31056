@@ -1,6 +1,6 @@
 # README
 
-##usersテーブル
+## usersテーブル
 
 | Column             | Type   | Options     |
 | ------------------ | ------ | ----------- |
@@ -17,7 +17,7 @@
 - has_many :items
 - has_many :purchases
 
-##itemsテーブル
+## itemsテーブル
 
 | Column                | Type       | Options                       |
 | --------------------- | ---------- | ----------------------------- |
@@ -40,7 +40,7 @@
 - belongs_to_active_hash :scheduled_delivery
 - belongs_to_active_hash :prefecture
 
-##purchasesテーブル
+## purchasesテーブル
 
 | Column | Type       | Options                       |
 | ------ | ---------- | ----------------------------- |
@@ -52,7 +52,7 @@
 - belongs_to :user
 - belongs_to :item
 
-##addressesテーブル
+## addressesテーブル
 
 | Column        | Type       | Options                       |
 | ------------- | ---------- | ----------------------------- |
