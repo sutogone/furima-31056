@@ -96,60 +96,50 @@ RSpec.describe User, type: :model do
       end
       it "last_nameを英字で入力すると登録できないこと" do
         @user.last_name = "tesuto"
-        @user.first_name = "太郎"
         @user.valid?
         expect(@user.errors.full_messages).to include("Last name is invalid")
       end
       it "first_nameを英字で入力すると登録できないこと" do
-        @user.last_name = "テスト"
         @user.first_name = "tarou"
         @user.valid?
         expect(@user.errors.full_messages).to include("First name is invalid")
       end
       it "last_nameを数字で入力すると登録できないこと" do
         @user.last_name = "123"
-        @user.first_name = "四五六"
         @user.valid?
         expect(@user.errors.full_messages).to include("Last name is invalid")
       end
       it "first_nameを数字で入力すると登録できないこと" do
-        @user.last_name = "一二三"
         @user.first_name = "456"
         @user.valid?
         expect(@user.errors.full_messages).to include("First name is invalid")
       end
       it "last_name_kanaを英字で入力すると登録できないこと" do
         @user.last_name_kana = "test"
-        @user.first_name_kana = "タロウ"
         @user.valid?
         expect(@user.errors.full_messages).to include("Last name kana is invalid")
       end
       it "first_name_kanaを英字で入力すると登録できないこと" do
-        @user.last_name_kana = "テスト"
         @user.first_name_kana = "tarou"
         @user.valid?
         expect(@user.errors.full_messages).to include("First name kana is invalid")
       end
       it "last_name_kanaを数字で入力すると登録できないこと" do
         @user.last_name_kana = "123"
-        @user.first_name_kana = "シーゴーロク"
         @user.valid?
         expect(@user.errors.full_messages).to include("Last name kana is invalid")
       end
       it "first_name_kanaを数字で入力すると登録できないこと" do
-        @user.last_name_kana = "イチニーサン"
         @user.first_name_kana = "456"
         @user.valid?
         expect(@user.errors.full_messages).to include("First name kana is invalid")
       end
       it "last_name_kanaを半角カナで入力すると登録できないこと" do
         @user.last_name_kana = "ﾃｽﾄ"
-        @user.first_name_kana = "タロウ"
         @user.valid?
         expect(@user.errors.full_messages).to include("Last name kana is invalid")
       end
       it "first_name_kanaを半角カナで入力すると登録できないこと" do
-        @user.last_name_kana = "テスト"
         @user.first_name_kana = "ﾀﾛｳ"
         @user.valid?
         expect(@user.errors.full_messages).to include("First name kana is invalid")
