@@ -7,10 +7,12 @@ class Item < ApplicationRecord
   belongs_to_active_hash :prefecture
   belongs_to :user
   has_one :purchase
+  has_one_attached :image
 
   with_options presence: true do
     validates :name,                    length: { in: 1..40 }
     validates :info,                    length: { in: 1..1000 }
+    validates :image
     validates :item_price,              numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999 }
     validates :category_id,             numericality: { other_then: 1 }
     validates :sales_status_id,         numericality: { other_then: 1 }
