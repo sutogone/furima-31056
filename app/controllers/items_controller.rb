@@ -1,4 +1,5 @@
 class ItemsController < ApplicationController
+  before_action :set_item, only: [:edit,:update,:show,:destroy]
   before_action :authenticate_user!, only: [:new]          #authenticate_user!とすることで、対象のアクションが未ログインユーザーによって実行された場合ログイン画面へ自動で遷移する。
 
   def index
@@ -7,6 +8,10 @@ class ItemsController < ApplicationController
 
   def new
     @item = Item.new                #newアクションが呼ばれたら新たにインスタンス@itemを生成
+  end
+
+  def show
+    
   end
 
   def create
@@ -22,4 +27,9 @@ class ItemsController < ApplicationController
   def item_params
     params.require(:item).permit(:name, :image, :info, :category_id, :sales_status_id, :shipping_fee_id, :scheduled_delivery_id, :item_price, :prefecture_id).merge(user_id: current_user.id)
   end
+
+  def set_item
+    @item = Item.find(params[:id])
+  end
+
 end
