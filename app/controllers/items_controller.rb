@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :set_item, only: [:edit,:update,:show,:destroy]
-  before_action :authenticate_user!, only: [:new]          #authenticate_user!とすることで、対象のアクションが未ログインユーザーによって実行された場合ログイン画面へ自動で遷移する。
+  before_action :authenticate_user!, only: [:new,:edit]          #authenticate_user!とすることで、対象のアクションが未ログインユーザーによって実行された場合ログイン画面へ自動で遷移する。
 
   def index
     @items = Item.includes(:user).order(created_at: :desc)
@@ -12,6 +12,20 @@ class ItemsController < ApplicationController
 
   def show
     
+  end
+
+  def edit
+    unless current_user == @item.user
+      redirect_to root_path
+    end
+  end
+
+  def update
+    if @item.update(item_params)
+      redirect_to root_path
+    else
+      render :edit
+    end
   end
 
   def create
