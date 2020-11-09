@@ -2,7 +2,7 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, only: [:new]          #authenticate_user!とすることで、対象のアクションが未ログインユーザーによって実行された場合ログイン画面へ自動で遷移する。
 
   def index
-    
+    @items = Item.includes(:user).order(created_at: :desc)
   end
 
   def new
