@@ -4,10 +4,10 @@ class PurchasesController < ApplicationController
 
   #購入ページ
   def index
-    
+
   end
   #/購入ページ
-  
+
   #購入処理
   def create
     
