@@ -10,7 +10,13 @@ class PurchasesController < ApplicationController
 
   #購入処理
   def create
-    
+    @buy = Buy.new(address_params)
+    if @buy.valid?   #valid?:バリデーションエラーがあればtrue無ければfalseを返す
+      @buy.save
+      redirect_to root_path
+    else
+      render :index
+    end
   end
   #/購入処理
 
