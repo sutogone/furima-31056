@@ -4,7 +4,7 @@ class PurchasesController < ApplicationController
 
   #購入ページ
   def index
-
+    @buy = Buy.new
   end
   #/購入ページ
 
@@ -13,4 +13,13 @@ class PurchasesController < ApplicationController
     
   end
   #/購入処理
+
+  private
+  def buy_params
+    params.require(:buy).permit(:order_id, :postal_code, :prefecture_id, :city, :address, :phone_number, :building).merge(item_id: params[:item_id], user_id: params[:user_id])
+  end
+
+  def set_item
+    @item = Item.find(params[:item_id])
+  end
 end

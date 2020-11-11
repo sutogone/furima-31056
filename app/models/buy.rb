@@ -4,11 +4,11 @@ class Buy
   #attr_accessor以降の属性を取得(ゲッター)し更新(セッター)も行ってくれる
   attr_accessor :postal_code, :prefecture_id, :city, :address, :building, :phone_number, :user_id, :item_id
 
-  with_options presence :true do
+  with_options presence: true do
     validates :postal_code, format: {with:/\A\d{3}[-]\d{4}\z/}
     validates :prefecture_id, numericality: { other_than: 1 }
-    validates :city,
-    validates :address,
+    validates :city
+    validates :address
     validates :phone_number, format: { with: /\A\d{11}\z/}
   end
 
