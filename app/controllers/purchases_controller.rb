@@ -4,7 +4,7 @@ class PurchasesController < ApplicationController
 
   #購入ページ
   def index
-    if @item.user_id == current_user.id || @item.order != nil     #購入済み商品の購入ページに遷移しようとすると、トップページに遷移する
+    if @item.user_id == current_user.id || @item.purchase != nil     #購入済み商品の購入ページに遷移しようとすると、トップページに遷移する
       redirect_to root_path
     end
     @buy = Buy.new
@@ -25,8 +25,8 @@ class PurchasesController < ApplicationController
   #/購入処理
 
   private
-  def buy_params
-    params.require(:buy).permit(:order_id, :postal_code, :prefecture_id, :city, :address, :phone_number, :building).merge(item_id: params[:item_id], user_id: params[:user_id], token: params[:token])
+  def address_params
+    params.require(:buy).permit(:postal_code, :prefecture_id, :city, :address, :phone_number, :building).merge(item_id: @item.id, user_id: current_user.id, token: params[:token])
   end
 
   def set_item

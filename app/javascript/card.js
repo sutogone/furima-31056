@@ -4,14 +4,14 @@ const pay = () => {
   form.addEventListener("submit", (e) => {                                      //購入ボタンを押してもサーバーサイドへリクエストが送られないように設定
     e.preventDefault();
 
-    const formResult = document.getElementById("charge-form")                   //カード情報入力フォーム全体のidを取得
+    const formResult = document.getElementById("charge-form");                   //カード情報入力フォーム全体のidを取得
     const formData = new FormData(formResult);                                  //カード情報入力フォームの値を取得できるようにオブジェクトを生成
 
     const card = {
-      number: formData.get("buy[purchases_number]"),                            //カードナンバーの情報を取得
-      cvc: formData.get("buy[purchases_cvc]"),                                  //セキュリティコードの情報を取得
-      exp_month: formData.get("buy[purchases_exp_month]"),                      //有効期限（年）の情報を取得
-      exp_year: `20${formData.get("buy[purchases_exp_year]")}`                  //有効期限（月）の情報を取得
+      number: formData.get("buy[number]"),                            //カードナンバーの情報を取得
+      cvc: formData.get("buy[cvc]"),                                  //セキュリティコードの情報を取得
+      exp_month: formData.get("buy[exp_month]"),                      //有効期限（年）の情報を取得
+      exp_year: `20${formData.get("buy[exp_year]")}`,                  //有効期限（月）の情報を取得
     };
 
     Payjp.createToken(card, (status, responce) => {                             //第一引数にcard変数の内容が、第二引数にそれぞれHTTPステータスコード、レスポンスの内容が入る
