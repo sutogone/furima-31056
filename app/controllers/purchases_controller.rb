@@ -12,6 +12,7 @@ class PurchasesController < ApplicationController
   def create
     @buy = Buy.new(address_params)
     if @buy.valid?   #valid?:バリデーションエラーがあればtrue無ければfalseを返す
+      pay_item
       @buy.save
       redirect_to root_path
     else
@@ -28,4 +29,14 @@ class PurchasesController < ApplicationController
   def set_item
     @item = Item.find(params[:item_id])
   end
+
+  def pay_item
+    Payjp.api_key = ENV["PAYJP_SECRET_KEY"]
+    Payjp::Charge.create(
+      amount: @item.price,            #商品の値段
+      card: address_params[:token],   #カードのトークン
+      currency: 'jpy'                 #通貨の種類
+    )
+  end
+
 end
