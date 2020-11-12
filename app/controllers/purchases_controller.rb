@@ -4,6 +4,9 @@ class PurchasesController < ApplicationController
 
   #購入ページ
   def index
+    if @item.user_id == current_user.id || @item.order != nil     #購入済み商品の購入ページに遷移しようとすると、トップページに遷移する
+      redirect_to root_path
+    end
     @buy = Buy.new
   end
   #/購入ページ
