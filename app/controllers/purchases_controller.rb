@@ -22,7 +22,7 @@ class PurchasesController < ApplicationController
 
   private
   def buy_params
-    params.require(:buy).permit(:order_id, :postal_code, :prefecture_id, :city, :address, :phone_number, :building).merge(item_id: params[:item_id], user_id: params[:user_id])
+    params.require(:buy).permit(:order_id, :postal_code, :prefecture_id, :city, :address, :phone_number, :building).merge(item_id: params[:item_id], user_id: params[:user_id], token: params[:token])
   end
 
   def set_item
