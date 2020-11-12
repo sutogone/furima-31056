@@ -1,5 +1,5 @@
 const pay = () => {
-  Payjp.setPublickey("pk~~");   //テスト用公開キー
+  Payjp.setPublickey(process.env.PAYJP_PUBLIC_KEY);   //テスト用公開キー
   const form = document.getElementById("charge-form");                          //カード情報入力フォーム全体のidを取得
   form.addEventListener("submit", (e) => {                                      //購入ボタンを押してもサーバーサイドへリクエストが送られないように設定
     e.preventDefault();
